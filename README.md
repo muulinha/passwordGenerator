@@ -15,7 +15,7 @@ It's easy to use and the result (password) is available on screen after a few cl
 
 ## Screenshot
 
-![Printscreen of the web application](./assets/03-javascript-homework-demo.png)
+![Printscreen of the web application](/Assets/03-javascript-homework-demo.png)
 
 ## Credits
 
