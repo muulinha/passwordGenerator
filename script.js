@@ -24,8 +24,7 @@ function generatePassword() {
       return null;
   }
 
-  
-  // Error message if wrong length
+    // Error message if wrong length
   if (passwordLength < 8 || passwordLength > 128) {
     alert("The password length must be between 8 and 128 characters.")
     return null;
@@ -62,7 +61,6 @@ function generatePassword() {
   return password;
   }
   
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
