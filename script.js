@@ -14,13 +14,13 @@ function getRandomArrayElement(array) {
 }
 
 // function to collection user inputs
-function usersSelectedOptions() {
-  var passwordLength = parseInt(prompt("How many characters long?"), 10);
+function generatePassword() {
+  var passwordLength = parseInt(prompt("How many characters are required? (between 8 and 128 characters.)"), 10);
   if (Number.isNaN(passwordLength)) {
     alert("must enter a number")
     return null;
   }
-  if (passwordLength < 8 || passwordLength > 128) {
+  if (passwordLength < 8 && passwordLength > 128) {
     alert("The password length must be between 8 and 128 characters.")
     return null;
   }
@@ -29,53 +29,38 @@ function usersSelectedOptions() {
   var hasNums = confirm("Select ok to add numbers s to your password")
   var hasLowerCase = confirm("Select ok to add lower case to your password")
   var hasUpperCase = confirm("Select ok to add upper chars to your password")
-// object
-  var usersPasswordOptions = {
-    passwordLength: passwordLength,
-    hasSpecChars: hasSpecChars,
-    hasNums: hasNums,
-    hasLowerCase: hasLowerCase,
-    hasUpperCase: hasUpperCase,
-  }
-  return usersPasswordOptions;
-}
-// End of user inputs collection
-
-function generatePassword() {
-  var options = usersSelectedOptions()
-  console.log(options)
+  
   var potentialPasswordValues = []
   
-
   if (hasSpecChars) {
-    potentialPasswordValues = potentialPasswordValues.push(specChars);
+    potentialPasswordValues = potentialPasswordValues.concat(specChars);
   }
   if (hasNums) {
-    potentialPasswordValues = potentialPasswordValues.push(numbs);
+    potentialPasswordValues = potentialPasswordValues.concat(numbs);
   }
   if (hasLowerCase) {
-    potentialPasswordValues = potentialPasswordValues.push(lowercase);
+    potentialPasswordValues = potentialPasswordValues.concat(lowercase);
   }
   if (hasUpperCase) {
-    potentialPasswordValues = potentialPasswordValues.push(uppercase);
+    potentialPasswordValues = potentialPasswordValues.concat(uppercase);
   }
 
-  var password = []
+  var password = "";
   for (var i = 0; i < passwordLength; i++) {
     password = password + getRandomArrayElement(potentialPasswordValues);
   }
   return password;
-
-}
+  }
+  
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
+
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
-// Add event listener to generate button
+// // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
