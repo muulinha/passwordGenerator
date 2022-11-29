@@ -20,20 +20,22 @@ function generatePassword() {
   var passwordLength = parseInt(prompt("How many characters are required? (between 8 and 128 characters.)"), 10);
   // Error message if not a number
   if (Number.isNaN(passwordLength)) {
-    alert("must enter a number")
-    return null;
+    alert("You must enter a number.");
+      return null;
   }
+
+  
   // Error message if wrong length
-  if (passwordLength < 8 && passwordLength > 128) {
+  if (passwordLength < 8 || passwordLength > 128) {
     alert("The password length must be between 8 and 128 characters.")
     return null;
   }
 
   // Window pop up with characters selectors
-  var hasSpecChars = confirm("Select ok to add spec chars to your password")
-  var hasNums = confirm("Select ok to add numbers s to your password")
-  var hasLowerCase = confirm("Select ok to add lower case to your password")
-  var hasUpperCase = confirm("Select ok to add upper chars to your password")
+  var hasSpecChars = confirm("SPECIAL CHARACTERS required? Yes - Confirm / No - Cancel")
+  var hasNums = confirm("NUMBERS required? Yes - Confirm / No - Cancel")
+  var hasLowerCase = confirm("LOWER CASE CHARACTERS required? Yes - Confirm / No - Cancel")
+  var hasUpperCase = confirm("UPPER CASE CHARACTERS required? Yes - Confirm / No - Cancel")
   
   // Defining the characters based on user selection. (Not sure why the "push" command didn't work instead concat)
   var potentialPasswordValues = []
@@ -53,7 +55,7 @@ function generatePassword() {
 
   // Collecting the characters based on the password length and index array
   var password = "";
-  
+
   for (var i = 0; i < passwordLength; i++) {
     password = password + getRandomArrayElement(potentialPasswordValues);
   }
