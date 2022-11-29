@@ -44,30 +44,29 @@ function usersSelectedOptions() {
 function generatePassword() {
   var options = usersSelectedOptions()
   console.log(options)
-  var confirmedPasswordValues = []
   var potentialPasswordValues = []
-  var passwordResult = []
+  
+
+  if (hasSpecChars) {
+    potentialPasswordValues = potentialPasswordValues.push(specChars);
+  }
+  if (hasNums) {
+    potentialPasswordValues = potentialPasswordValues.push(numbs);
+  }
+  if (hasLowerCase) {
+    potentialPasswordValues = potentialPasswordValues.push(lowercase);
+  }
+  if (hasUpperCase) {
+    potentialPasswordValues = potentialPasswordValues.push(uppercase);
+  }
+
+  var password = []
+  for (var i = 0; i < passwordLength; i++) {
+    password = password + getRandomArrayElement(potentialPasswordValues);
+  }
+  return password;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Message William Su
-
-
-
-
 
 // Write password to the #password input
 function writePassword() {
